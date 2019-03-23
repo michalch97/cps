@@ -1,0 +1,12 @@
+
+.mainWindow {
+  -fx-background-color: #96c2d0;
+}
+
+@font-face {
+  src: url('/font/SourceCodePro-Bold.ttf');
+}
+
+.text {
+  -fx-font-family: 'Source Code Pro Bold', monospace;
+}
