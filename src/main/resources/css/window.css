@@ -1,5 +1,5 @@
 
-.mainWindow {
+.window {
   -fx-background-color: #96c2d0;
 }
 
@@ -9,4 +9,5 @@
 
 .text {
   -fx-font-family: 'Source Code Pro Bold', monospace;
+  -fx-font-size: 16;
 }
