@@ -17,6 +17,6 @@ public abstract class Signal {
         this.maxAmplitude = amplitude;
     }
 
-    abstract Double calculateValue(Double xPoint);
-    abstract List<Double> calculateValues(Collection<Double> xPoints);
+    abstract public Double calculateValue(Double xPoint);
+    abstract public List<Double> calculateValues(Collection<Double> xPoints);
 }
