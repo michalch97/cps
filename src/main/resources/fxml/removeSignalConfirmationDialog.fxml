@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="SaveSignalDialog" prefHeight="231.0" prefWidth="400.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.SaveDialog">
+<BorderPane fx:id="SaveSignalDialog" prefHeight="231.0" prefWidth="400.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@../css/buttons.css" />
         <URL value="@../css/window.css" />
@@ -19,7 +19,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="SignalName" text="Nazwa Sygnału" />
+                  <Label fx:id="SignalName" styleClass="text" text="Nazwa Sygnału" />
                   <Label fx:id="QuestionLabel" styleClass="text" text="Czy na pewno chcesz usunąć?">
                      <font>
                         <Font size="16.0" />
