@@ -12,27 +12,27 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" styleClass="window" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@../css/buttons.css" />
       <URL value="@../css/window.css" />
    </stylesheets>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="380.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="329.0" prefWidth="160.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="ShowChartButton" mnemonicParsing="false" prefWidth="140.0" styleClass="textButton, text" text="Pokaż wykres" textAlignment="CENTER">
+                  <Button fx:id="ShowChartButton" mnemonicParsing="false" prefWidth="150.0" styleClass="textButton, text" text="Pokaż wykres" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="ShowHistogramButton" mnemonicParsing="false" prefWidth="140.0" styleClass="textButton, text" text="Pokaż histogram" textAlignment="CENTER">
+                  <Button fx:id="ShowHistogramButton" mnemonicParsing="false" prefWidth="150.0" styleClass="textButton, text" text="Pokaż histogram" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="ShowParametersButton" mnemonicParsing="false" prefWidth="140.0" styleClass="textButton, text" text="Pokaż parametry" textAlignment="CENTER">
+                  <Button fx:id="ShowParametersButton" mnemonicParsing="false" prefWidth="150.0" styleClass="textButton, text" text="Pokaż parametry" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
@@ -105,7 +105,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <MenuButton fx:id="OptionsMenu" mnemonicParsing="false" prefWidth="130.0" styleClass="textButton, text" text="Opcje" textAlignment="CENTER">
+                  <MenuButton fx:id="OptionsMenu" mnemonicParsing="false" prefWidth="140.0" styleClass="textButton, text" text="Opcje" textAlignment="CENTER">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
