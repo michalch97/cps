@@ -9,7 +9,6 @@ import lombok.Getter;
 public abstract class Signal {
     private Double minAmplitude;
     private Double maxAmplitude;
-
     public Signal(Double amplitude) {
         amplitude = amplitude < 0 ? -amplitude : amplitude;
 

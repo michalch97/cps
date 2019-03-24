@@ -78,7 +78,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -89,15 +90,6 @@
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
-                <!--<configuration>-->
-                    <!--<archive>-->
-                        <!--<manifest>-->
-                            <!--<addClasspath>true</addClasspath>-->
-                            <!--<classpathPrefix>main/java/</classpathPrefix>-->
-                            <!--<mainClass>cps.Main</mainClass>-->
-                        <!--</manifest>-->
-                    <!--</archive>-->
-                <!--</configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
