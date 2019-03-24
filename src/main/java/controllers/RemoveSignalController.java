@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import services.RemoveSignalService;
 
-public class RemoveSignalController implements ServiceBindable<RemoveSignalService> {
+public class RemoveSignalController extends Controller implements ServiceBindable<RemoveSignalService> {
     public Label SignalName;
     public Button DeleteButton;
     public Button CancelButton;
@@ -13,11 +13,12 @@ public class RemoveSignalController implements ServiceBindable<RemoveSignalServi
     private RemoveSignalService removeSignalService;
 
     public void onRemoveClicked(ActionEvent actionEvent) {
-
+        removeSignalService.removeSignal();
+        closeWindow(DeleteButton);
     }
 
     public void onCancelClicked(ActionEvent actionEvent) {
-
+        closeWindow(CancelButton);
     }
 
     @Override

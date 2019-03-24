@@ -9,6 +9,10 @@
   -fx-border-radius: 12px;
 }
 
+.textButton:disabled, .textButton:disabled > *, .iconButton:disabled, .iconButton:disabled > * {
+  -fx-opacity: 0.4 ;
+}
+
 .iconButton {
   -fx-background-size: 18 18;
   -fx-background-repeat: no-repeat;

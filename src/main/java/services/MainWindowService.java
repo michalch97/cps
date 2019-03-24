@@ -28,24 +28,28 @@ public class MainWindowService extends Service {
         signals.add(signalView);
     }
 
+    public void removeSignal(SignalView signalView) {
+        signals.remove(signalView);
+    }
+
     public void openAddNewSignalDialog() {
         new CreateSignalService(this);
     }
 
-    public void openRemoveSignalDialog() {
-        new RemoveSignalService();
+    public void openRemoveSignalDialog(SignalView signalView) {
+        new RemoveSignalService(this, signalView);
     }
 
     public void openSaveDialog() {
-        new SaveDialogService();
+        new SaveDialogService(this);
     }
 
     public void openLoadDialog() {
-        new LoadDialogService();
+        new LoadDialogService(this);
     }
 
     public void openLoadTextDialog() {
-        new LoadTextDialogService();
+        new LoadTextDialogService(this);
     }
 
     public void showChart() {
@@ -57,11 +61,11 @@ public class MainWindowService extends Service {
     }
 
     public void showSignalParameters() {
-        new SignalParametersService();
+        new SignalParametersService(this);
     }
 
-    public void openSignalOperationDialog(SignalOperationType type) {
-        new SignalOperationService(type);
+    public void openSignalOperationDialog(SignalView signalView, SignalOperationType type) {
+        new SignalOperationService(this, signalView, type);
     }
 
     void configureWindow(Stage stage, Scene scene) {

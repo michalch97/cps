@@ -69,5 +69,8 @@ public class CreateSignalController extends Controller implements ServiceBindabl
     private void initComboBox() {
         ObservableList<SignalType> signalTypes = FXCollections.observableArrayList(SignalType.values());
         SignalTypeComboBox.setItems(signalTypes);
+
+        CreateButton.disableProperty().bind(SignalTypeComboBox.valueProperty().isNull()
+                                                              .or(SignalNameField.textProperty().isEmpty()));
     }
 }

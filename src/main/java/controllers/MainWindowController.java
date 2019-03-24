@@ -58,25 +58,34 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     }
 
     public void onRemoveSignalClicked(ActionEvent actionEvent) {
-        windowService.openRemoveSignalDialog();
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.openRemoveSignalDialog(selectedItem);
+        }
     }
 
 
     public void onAdditionClicked(ActionEvent actionEvent) {
-        windowService.openSignalOperationDialog(SignalOperationType.ADDITION);
+        operationSelected(SignalOperationType.ADDITION);
     }
 
     public void onMultiplicationClicked(ActionEvent actionEvent) {
-        windowService.openSignalOperationDialog(SignalOperationType.MULTIPLICATION);
-
+        operationSelected(SignalOperationType.MULTIPLICATION);
     }
 
     public void onSubtractionClicked(ActionEvent actionEvent) {
-        windowService.openSignalOperationDialog(SignalOperationType.SUBTRACTION);
+        operationSelected(SignalOperationType.SUBTRACTION);
     }
 
     public void onDivisionClicked(ActionEvent actionEvent) {
-        windowService.openSignalOperationDialog(SignalOperationType.DIVISION);
+        operationSelected(SignalOperationType.DIVISION);
+    }
+
+    private void operationSelected(SignalOperationType operationType) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.openSignalOperationDialog(selectedItem, operationType);
+        }
     }
 
     @Override
