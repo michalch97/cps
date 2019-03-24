@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="SaveSignalDialog" prefHeight="460.0" prefWidth="629.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="SaveSignalDialog" fx:controller="controllers.SignalParametersController" prefHeight="460.0" prefWidth="629.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@../css/buttons.css" />
         <URL value="@../css/window.css" />

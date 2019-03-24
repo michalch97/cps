@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="SaveSignalDialog" prefHeight="400.0" prefWidth="400.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.SaveDialog">
+<BorderPane fx:id="SaveSignalDialog" prefHeight="400.0" prefWidth="400.0" styleClass="window" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoadDialogController">
     <stylesheets>
         <URL value="@../css/buttons.css" />
         <URL value="@../css/window.css" />
@@ -35,7 +35,7 @@
                               <Insets left="10.0" right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="ChooseFileButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="textButton, text" text="..." textAlignment="CENTER">
+                        <Button fx:id="ChooseFileButton" mnemonicParsing="false" onAction="#onChooseFileClicked" prefHeight="30.0" prefWidth="30.0" styleClass="textButton, text" text="..." textAlignment="CENTER">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -53,7 +53,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="LoadButton" mnemonicParsing="false" prefHeight="30.0" styleClass="textButton, text" text="Wczytaj">
+            <Button fx:id="LoadButton" mnemonicParsing="false" onAction="#onLoadClicked" prefHeight="30.0" styleClass="textButton, text" text="Wczytaj">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -61,7 +61,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="CancelButton" mnemonicParsing="false" prefHeight="30.0" styleClass="textButton, text" text="Anuluj">
+            <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#onCancelClicked" prefHeight="30.0" styleClass="textButton, text" text="Anuluj">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
