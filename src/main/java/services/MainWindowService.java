@@ -6,7 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import signalUtils.SignalFactory;
 import signalUtils.SignalOperationType;
+import signalUtils.SignalParameters;
+import signalUtils.SignalType;
+import signals.Signal;
 import viewItems.SignalView;
 
 @Getter
@@ -22,6 +26,22 @@ public class MainWindowService extends Service {
         signals = FXCollections.observableArrayList();
         stage = primaryStage;
         createScene(primaryStage, fxmlMainWindowFileName);
+
+        createMockSignal(); // TODO remove when done testing
+    }
+
+    public void createMockSignal() {
+        SignalParameters signalParameters = SignalParameters.builder()
+                                                            .amplitude(10.d)
+                                                            .period(1.337d)
+                                                            .duration(4.20d)
+                                                            .startTime(0.d)
+                                                            .fillFactor(6.9d)
+                                                            .build();
+
+        Signal signal = SignalFactory.createSignal(signalParameters, SignalType.NOISE);
+        SignalView signalView = new SignalView("Name ABC", signal, signalParameters, SignalType.NOISE);
+        addSignal(signalView);
     }
 
     public void addSignal(SignalView signalView) {
@@ -52,16 +72,16 @@ public class MainWindowService extends Service {
         new LoadTextDialogService(this);
     }
 
-    public void showChart() {
-        new ChartService();
+    public void showChart(SignalView selectedItem) {
+        new ChartService(selectedItem);
     }
 
-    public void showHistogram() {
-        new HistogramService();
+    public void showHistogram(SignalView selectedItem) {
+        new HistogramService(selectedItem);
     }
 
-    public void showSignalParameters() {
-        new SignalParametersService(this);
+    public void showSignalParameters(SignalView selectedItem) {
+        new SignalParametersService(this, selectedItem);
     }
 
     public void openSignalOperationDialog(SignalView signalView, SignalOperationType type) {

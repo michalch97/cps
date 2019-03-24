@@ -11,8 +11,8 @@ public class LoadDialogService extends Service {
 
     public LoadDialogService(MainWindowService mainWindowService) {
         Stage dialog = new Stage();
-        createScene(dialog, fxmlLoadDialogFileName);
         dialog.initOwner(mainWindowService.getStage());
+        createScene(dialog, fxmlLoadDialogFileName);
     }
 
     @Override

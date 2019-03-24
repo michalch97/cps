@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -12,8 +13,8 @@ import viewItems.SignalView;
 public class MainWindowController implements ServiceBindable<MainWindowService> {
     public Button ShowChartButton;
     public Button ShowHistogramButton;
-
     public Button ShowParametersButton;
+
     public Button AdditionOperationButton;
     public Button MultiplicationOperationButton;
     public Button SubtractionOperationButton;
@@ -29,15 +30,18 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     MainWindowService windowService;
 
     public void onShowChartClicked(ActionEvent actionEvent) {
-        windowService.showChart();
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        windowService.showChart(selectedItem);
     }
 
     public void onShowHistogramClicked(ActionEvent actionEvent) {
-        windowService.showHistogram();
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        windowService.showHistogram(selectedItem);
     }
 
     public void onShowParametersClicked(ActionEvent actionEvent) {
-        windowService.showSignalParameters();
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        windowService.showSignalParameters(selectedItem);
     }
 
 
@@ -93,11 +97,24 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
         windowService = service;
 
         initSignalsTableView();
+        initSelectionBindings();
     }
 
     private void initSignalsTableView() {
         SignalName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         SignalsTableView.setItems(windowService.getSignals());
+    }
+
+    private void initSelectionBindings() {
+        SaveSignalButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        RemoveSignalButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        ShowChartButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        ShowHistogramButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        ShowParametersButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        AdditionOperationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        MultiplicationOperationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        SubtractionOperationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        DivisionOperationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
     }
 }

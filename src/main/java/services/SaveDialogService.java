@@ -11,8 +11,8 @@ public class SaveDialogService extends Service {
 
     public SaveDialogService(MainWindowService mainWindowService) {
         Stage dialog = new Stage();
-        createScene(dialog, fxmlSaveDialogFileName);
         dialog.initOwner(mainWindowService.getStage());
+        createScene(dialog, fxmlSaveDialogFileName);
     }
 
     @Override

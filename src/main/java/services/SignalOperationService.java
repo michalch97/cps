@@ -26,8 +26,8 @@ public class SignalOperationService extends Service {
         this.type = type;
 
         Stage dialog = new Stage();
-        createScene(dialog, fxmlSignalOperationDialogFileName);
         dialog.initOwner(mainWindowService.getStage());
+        createScene(dialog, fxmlSignalOperationDialogFileName);
     }
 
     public List<SignalView> getSignalsToChooseFrom() {

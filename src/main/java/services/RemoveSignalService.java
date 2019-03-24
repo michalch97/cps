@@ -20,8 +20,8 @@ public class RemoveSignalService extends Service {
         this.signalToRemove = signalToRemove;
 
         Stage dialog = new Stage();
-        createScene(dialog, fxmlRemoveSignalFileName);
         dialog.initOwner(mainWindowService.getStage());
+        createScene(dialog, fxmlRemoveSignalFileName);
     }
 
     public void removeSignal() {
