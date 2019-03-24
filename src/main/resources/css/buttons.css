@@ -36,3 +36,7 @@
 .removeButton {
   -fx-background-image: url("../icons/minus.png");
 }
+
+.loadTextButton {
+  -fx-background-image: url("../icons/open-txt.png");
+}

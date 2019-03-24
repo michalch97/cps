@@ -69,6 +69,16 @@
             <version>5.4.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.26</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -96,7 +106,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>cps.Main</mainClass>
+                    <mainClass>Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
