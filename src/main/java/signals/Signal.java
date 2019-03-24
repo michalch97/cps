@@ -1,9 +1,12 @@
 package signals;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
+import org.apache.commons.collections4.CollectionUtils;
 
 @Getter
 public abstract class Signal {
@@ -17,5 +20,11 @@ public abstract class Signal {
     }
 
     abstract public Double calculateValue(Double xPoint);
-    abstract public List<Double> calculateValues(Collection<Double> xPoints);
+
+    public List<Double> calculateValues(Collection<Double> xPoints) {
+        if (CollectionUtils.isEmpty(xPoints)) {
+            return new ArrayList<>();
+        }
+        return xPoints.stream().map(this::calculateValue).collect(Collectors.toList());
+    }
 }

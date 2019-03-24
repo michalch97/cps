@@ -1,12 +1,5 @@
 package signals;
 
-import org.apache.commons.collections4.CollectionUtils;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class TriangularSignal extends Signal {
 
     private Double period;
@@ -32,13 +25,5 @@ public class TriangularSignal extends Signal {
         else {
             return getMinAmplitude()*(xPoint - k*period - startTime)/(period*(1.d-dutyCycle)) + getMaxAmplitude()/(1-dutyCycle);
         }
-    }
-
-    @Override
-    public List<Double> calculateValues(Collection<Double> xPoints) {
-        if (CollectionUtils.isEmpty(xPoints)) {
-            return new ArrayList<>();
-        }
-        return xPoints.stream().map(this::calculateValue).collect(Collectors.toList());
     }
 }
