@@ -1,11 +1,13 @@
 package controllers;
 
-import exceptions.IncorrectServiceControllerBindingException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import services.MainWindowService;
 import signalUtils.SignalOperationType;
+import viewItems.SignalView;
 
 public class MainWindowController implements ServiceBindable<MainWindowService> {
     public Button ShowChartButton;
@@ -16,7 +18,8 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     public Button MultiplicationOperationButton;
     public Button SubtractionOperationButton;
     public Button DivisionOperationButton;
-    public TableView SignalsTableView;
+    public TableView<SignalView> SignalsTableView;
+    public TableColumn<SignalView, String> SignalName;
     public Button SaveSignalButton;
     public Button LoadSignalButton;
     public Button LoadSignalInTextButton;
@@ -78,10 +81,14 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
 
     @Override
     public void setService(MainWindowService service) {
-        if (service == null) {
-            throw new IncorrectServiceControllerBindingException();
-        }
-
         windowService = service;
+
+        initSignalsTableView();
+    }
+
+    private void initSignalsTableView() {
+        SignalName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        SignalsTableView.setItems(windowService.getSignals());
     }
 }

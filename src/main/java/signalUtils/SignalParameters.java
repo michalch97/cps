@@ -10,5 +10,5 @@ public class SignalParameters {
     private Double startTime;
     private Double duration;
     private Double period;
-    private Double FillFactor;
+    private Double fillFactor;
 }

@@ -90,7 +90,7 @@
    <center>
       <TableView fx:id="SignalsTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nazwa wykresu" />
+          <TableColumn fx:id="SignalName" prefWidth="75.0" text="Nazwa sygnału" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

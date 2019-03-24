@@ -50,6 +50,10 @@ public abstract class Service {
             Parent root = fxmlLoader.load();
 
             ServiceBindable<Service> controller = fxmlLoader.getController();
+            if (controller == null) {
+                throw new IncorrectServiceControllerBindingException();
+            }
+
             controller.setService(this);
 
             return Optional.ofNullable(root);

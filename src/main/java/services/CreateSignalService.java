@@ -6,6 +6,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import signalUtils.SignalFactory;
+import signalUtils.SignalParameters;
+import signalUtils.SignalType;
+import signals.Signal;
+import viewItems.SignalView;
 
 @Getter
 @Slf4j
@@ -21,6 +26,13 @@ public class CreateSignalService extends Service {
         dialog = new Stage();
         dialog.initOwner(mainWindowService.getStage());
         createScene(dialog, fxmlCreateSignalFileName);
+    }
+
+    public void createSignal(String signalName, SignalType type, SignalParameters parameters) {
+        Signal signal = SignalFactory.createSignal(parameters, type);
+        SignalView signalView = new SignalView(signalName, signal, parameters, type);
+
+        mainWindowService.addSignal(signalView);
     }
 
     @Override
