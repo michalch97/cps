@@ -1,10 +1,12 @@
 package controllers;
 
+import exceptions.IncorrectServiceControllerBindingException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import services.MainWindowService;
 
-public class MainWindowController {
+public class MainWindowController implements ServiceBindable<MainWindowService> {
     public Button ShowChartButton;
     public Button ShowHistogramButton;
 
@@ -19,6 +21,8 @@ public class MainWindowController {
     public Button LoadSignalInTextButton;
     public Button AddSignalButton;
     public Button RemoveSignalButton;
+
+    MainWindowService windowService;
 
     public void onShowChartClicked(ActionEvent actionEvent) {
 
@@ -44,7 +48,7 @@ public class MainWindowController {
     }
 
     public void onAddNewSignalClicked(ActionEvent actionEvent) {
-
+        windowService.openAddNewSignalDialog();
     }
 
     public void onRemoveSignalClicked(ActionEvent actionEvent) {
@@ -63,5 +67,14 @@ public class MainWindowController {
 
     public void onDivisionClicked(ActionEvent actionEvent) {
 
+    }
+
+    @Override
+    public void setService(MainWindowService service) {
+        if (service == null) {
+            throw new IncorrectServiceControllerBindingException();
+        }
+
+        windowService = service;
     }
 }

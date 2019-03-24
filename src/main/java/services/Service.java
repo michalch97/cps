@@ -1,33 +1,63 @@
 package services;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 
+import controllers.ServiceBindable;
 import exceptions.FxmlNotFoundException;
+import exceptions.IncorrectServiceControllerBindingException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-class Service {
+public abstract class Service {
 
-    URL getFXMLResourceFileHandle(String fxmlFileName) {
+    void createScene(Stage stage, String fxmlFileName) {
+        Optional<URL> resource = getFXMLResourceFileHandle(fxmlFileName);
+
+        if (resource.isPresent()) {
+            Optional<Parent> root = loadFXMLResource(resource.get());
+
+            if (root.isPresent()) {
+                Image applicationIcon = new Image("icons/app-icon.png");
+                stage.getIcons().add(applicationIcon);
+
+                Scene scene = new Scene(root.get());
+                stage.setScene(scene);
+
+                configureWindow(stage, scene);
+            }
+        }
+    }
+
+    Optional<URL> getFXMLResourceFileHandle(String fxmlFileName) {
         URL resource = getClass().getClassLoader().getResource(fxmlFileName);
         if (resource == null) {
-            throw new FxmlNotFoundException(fxmlFileName);
+            log.error("Resource not found", new FxmlNotFoundException(fxmlFileName));
+            return Optional.empty();
         }
 
-        return resource;
+        return Optional.of(resource);
     }
 
     Optional<Parent> loadFXMLResource(URL resource) {
         try {
-            Parent root = FXMLLoader.load(resource);
+            FXMLLoader fxmlLoader = new FXMLLoader(resource);
+            Parent root = fxmlLoader.load();
+
+            ServiceBindable<Service> controller = fxmlLoader.getController();
+            controller.setService(this);
+
             return Optional.ofNullable(root);
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Loading file failed!", e);
             return Optional.empty();
         }
     }
+
+    abstract void configureWindow(Stage stage, Scene scene);
 }
