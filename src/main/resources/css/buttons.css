@@ -9,6 +9,22 @@
   -fx-border-radius: 12px;
 }
 
+.textButton:disabled, .textButton:disabled > *, .iconButton:disabled, .iconButton:disabled > * {
+  -fx-opacity: 0.4 ;
+}
+
+.textButton:hover, .iconButton:hover {
+  -fx-background-color: #97c9ec;
+  -fx-scale-y: 1.1;
+  -fx-scale-x: 1.1;
+}
+
+.textButton:pressed, .iconButton:pressed {
+  -fx-background-color: #9fe4ec;
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+}
+
 .iconButton {
   -fx-background-size: 18 18;
   -fx-background-repeat: no-repeat;
@@ -35,4 +51,8 @@
 
 .removeButton {
   -fx-background-image: url("../icons/minus.png");
+}
+
+.loadTextButton {
+  -fx-background-image: url("../icons/open-txt.png");
 }

@@ -1,21 +1,18 @@
 package signalGenerators;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
-import signals.DiscreteSignal;
 import signals.Signal;
 
 @Getter
 @NonNull
 public class SignalGenerator {
     private Signal signal;
-    private DiscreteSignal discreteSignal;
     private Double startTime;
     private Double duration;
     private Double timeStep;
@@ -27,15 +24,17 @@ public class SignalGenerator {
         this.timeStep = timeStep;
     }
 
-    public SignalGenerator(DiscreteSignal discreteSignal, Double startTime, Double duration, Double timeStep){
-        this.discreteSignal = discreteSignal;
-        this.startTime = startTime;
-        this.duration = duration;
-        this.timeStep = timeStep;
-    }
-
     public List<Point> generateSignal() {
         List<Double> xValues = generateXValues();
+        return calculateYValues(xValues);
+    }
+
+    public List<Point> generateSignalForDiscretization() {
+        List<Double> xValues = generateDiscreteXValues();
+        return calculateYValues(xValues);
+    }
+
+    private List<Point> calculateYValues(List<Double> xValues) {
         List<Double> yValues = signal.calculateValues(xValues);
 
         return IntStream.range(0, xValues.size())
@@ -43,18 +42,14 @@ public class SignalGenerator {
                         .collect(Collectors.toList());
     }
 
-    public List<Point> generateSignalForDiscretization() {
-        List<Double> xValues = generateXValues();
-        Map<Double,Double> values = discreteSignal.calculateValues(xValues);
-//        List<Point> points = new ArrayList<>();
-        Object[] array = values.keySet().toArray();
-//        for(int i = 0;i<values.size();i++){
-//            points.add(new Point((Double)array[i], values.get(array[i])));
-//        }
-//        return points;
-        return IntStream.range(0, values.size())
-                .mapToObj(it -> new Point((Double)array[it], values.get(array[it])))
-                .collect(Collectors.toList());
+    private List<Double> generateDiscreteXValues() {
+        int startTime = (int)Math.ceil(this.startTime);
+        int endTime = (int)Math.floor(startTime + duration);
+        return IntStream.range(startTime, endTime)
+                        .limit((long) (duration / timeStep))
+                        .mapToDouble(it -> it)
+                        .boxed()
+                        .collect(Collectors.toList());
     }
 
     private List<Double> generateXValues() {

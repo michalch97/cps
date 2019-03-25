@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.BorderPane?>
-
-<BorderPane fx:id="SaveSignalDialog" prefHeight="400.0" prefWidth="400.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="SaveSignalDialog" fx:controller="controllers.ChartController" prefHeight="400.0" prefWidth="400.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@../css/buttons.css" />
         <URL value="@../css/window.css" />
@@ -14,7 +12,7 @@
    <center>
       <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
