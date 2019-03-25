@@ -10,8 +10,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import services.SignalOperationService;
-import services.SignalParametersService;
-import signalUtils.SignalType;
 import viewItems.SignalView;
 
 public class SignalOperationController extends Controller implements ServiceBindable<SignalOperationService> {
@@ -20,10 +18,14 @@ public class SignalOperationController extends Controller implements ServiceBind
     public ComboBox<SignalView> SecondSignalComboBox;
     public Button SaveButton;
     public Button CancelButton;
+
     private SignalOperationService signalOperationService;
 
     public void onSaveClicked(ActionEvent actionEvent) {
-        // TODO add operation
+        SignalView selectedItem = SecondSignalComboBox.getSelectionModel().getSelectedItem();
+        String newName = newSignalName.getText();
+
+        signalOperationService.createNewSignalByOperation(newName, selectedItem);
         closeWindow(SaveButton);
     }
 
@@ -34,6 +36,8 @@ public class SignalOperationController extends Controller implements ServiceBind
     @Override
     public void setService(SignalOperationService service) {
         this.signalOperationService = service;
+
+        initSignalNames();
     }
 
     private void initSignalNames() {
