@@ -1,5 +1,7 @@
 package signals;
 
+import signalUtils.SignalStorageType;
+
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
 
@@ -8,7 +10,7 @@ public class SinSignal extends Signal {
     private Double period;
     private Double startTime;
     public SinSignal(Double amplitude, Double period, Double startTime){
-        super(amplitude);
+        super(amplitude, SignalStorageType.Continuous);
         this.period = period;
         this.startTime = startTime;
     }

@@ -1,5 +1,7 @@
 package signals;
 
+import signalUtils.SignalStorageType;
+
 public class TriangularSignal extends Signal {
 
     private Double period;
@@ -8,7 +10,7 @@ public class TriangularSignal extends Signal {
     private Double k;
 
     public TriangularSignal(Double amplitude, Double period, Double startTime, Double dutyCycle) {
-        super(amplitude);
+        super(amplitude, SignalStorageType.Continuous);
         this.period = period;
         this.startTime = startTime;
         this.dutyCycle = dutyCycle;//przez jaka czesc okresu wartosc ma byc rowna A

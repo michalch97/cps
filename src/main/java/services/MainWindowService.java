@@ -42,6 +42,9 @@ public class MainWindowService extends Service {
         Signal signal = SignalFactory.createSignal(signalParameters, SignalType.NOISE);
         SignalView signalView = new SignalView("Name ABC", signal, signalParameters, SignalType.NOISE);
         addSignal(signalView);
+        signal = SignalFactory.createSignal(signalParameters, SignalType.UNIT_IMPULSE);
+        signalView = new SignalView("Name Unit", signal, signalParameters, SignalType.UNIT_IMPULSE);
+        addSignal(signalView);
     }
 
     public void addSignal(SignalView signalView) {

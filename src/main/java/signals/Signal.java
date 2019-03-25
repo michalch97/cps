@@ -7,12 +7,16 @@ import java.util.stream.Collectors;
 
 import lombok.Getter;
 import org.apache.commons.collections4.CollectionUtils;
+import signalUtils.SignalStorageType;
 
 @Getter
 public abstract class Signal {
     private Double minAmplitude;
     private Double maxAmplitude;
-    public Signal(Double amplitude) {
+    private SignalStorageType signalStorageType;
+
+    public Signal(Double amplitude, SignalStorageType signalStorageType) {
+        this.signalStorageType = signalStorageType;
         amplitude = amplitude < 0 ? -amplitude : amplitude;
 
         this.minAmplitude = -amplitude;

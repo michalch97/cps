@@ -38,7 +38,7 @@ public class HistogramService extends Service {
 
     @Override
     void configureWindow(Stage stage, Scene scene) {
-        stage.setTitle("Histogram");
+        stage.setTitle("Histogram " + selectedItem.getName());
         stage.show();
     }
 

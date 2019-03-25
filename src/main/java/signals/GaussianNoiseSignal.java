@@ -2,12 +2,14 @@ package signals;
 
 import java.util.Random;
 
+import signalUtils.SignalStorageType;
+
 public class GaussianNoiseSignal extends Signal {
     private static final Long doubleToLongExtenderConst = 1_000_000_000L;
     Random rand;
 
     public GaussianNoiseSignal(Double amplitude) {
-        super(amplitude);
+        super(amplitude, SignalStorageType.Continuous);
         rand = new Random();
     }
     @Override

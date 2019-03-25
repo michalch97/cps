@@ -27,7 +27,7 @@ public class ChartService extends Service {
 
     @Override
     void configureWindow(Stage stage, Scene scene) {
-        stage.setTitle("Wykres");
+        stage.setTitle("Wykres " + selectedItem.getName());
         stage.show();
     }
 

@@ -1,5 +1,6 @@
 package signalGenerators;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
@@ -7,6 +8,8 @@ import java.util.stream.IntStream;
 
 import lombok.Getter;
 import lombok.NonNull;
+import signalUtils.SignalStorageType;
+import signals.DiscreteSignal;
 import signals.Signal;
 
 @Getter
@@ -25,12 +28,22 @@ public class SignalGenerator {
     }
 
     public List<Point> generateSignal() {
-        List<Double> xValues = generateXValues();
-        return calculateYValues(xValues);
+        if (signal.getSignalStorageType() == SignalStorageType.Discrete) {
+            return generateSignalForDiscretization();
+        } else {
+            List<Double> xValues = generateXValues();
+            return calculateYValues(xValues);
+        }
     }
 
     public List<Point> generateSignalForDiscretization() {
-        List<Double> xValues = generateDiscreteXValues();
+        List<Double> xValues;
+        if (signal instanceof DiscreteSignal) {
+            xValues = new ArrayList<>(((DiscreteSignal) signal).getXPoints());
+        } else {
+            xValues = generateDiscreteXValues();
+        }
+
         return calculateYValues(xValues);
     }
 
@@ -43,9 +56,13 @@ public class SignalGenerator {
     }
 
     private List<Double> generateDiscreteXValues() {
-        int startTime = (int)Math.ceil(this.startTime);
-        int endTime = (int)Math.floor(startTime + duration);
-        return IntStream.range(startTime, endTime)
+        return generateDiscreteXValues(startTime, duration, timeStep);
+    }
+
+    public static List<Double> generateDiscreteXValues(Double startTime, Double duration, Double timeStep) {
+        int signalStartTime = (int)Math.ceil(startTime);
+        int signalEndTime = (int)Math.floor(startTime + duration);
+        return IntStream.range(signalStartTime, signalEndTime)
                         .limit((long) (duration / timeStep))
                         .mapToDouble(it -> it)
                         .boxed()
@@ -53,6 +70,10 @@ public class SignalGenerator {
     }
 
     private List<Double> generateXValues() {
+        return generateXValues(startTime, duration, timeStep);
+    }
+
+    public static List<Double> generateXValues(Double startTime, Double duration, Double timeStep) {
         return DoubleStream.iterate(startTime, value -> value + timeStep)
                            .limit((long) (duration / timeStep))
                            .boxed()

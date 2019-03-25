@@ -1,6 +1,8 @@
 package signals;
 
-import java.util.*;
+import java.util.Random;
+
+import signalUtils.SignalStorageType;
 
 public class ImpulseNoiseSignal extends Signal {
 
@@ -9,7 +11,7 @@ public class ImpulseNoiseSignal extends Signal {
     private Random rand;
 
     public ImpulseNoiseSignal(Double amplitude, Double frequency, Double probability) {
-        super(amplitude);
+        super(amplitude, SignalStorageType.Continuous);
         this.frequency = frequency;
         this.probability = probability;
         this.rand = new Random();

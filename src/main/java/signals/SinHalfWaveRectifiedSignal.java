@@ -1,5 +1,7 @@
 package signals;
 
+import signalUtils.SignalStorageType;
+
 import static java.lang.Math.*;
 
 public class SinHalfWaveRectifiedSignal extends Signal {
@@ -7,7 +9,7 @@ public class SinHalfWaveRectifiedSignal extends Signal {
     private Double period;
     private Double startTime;
     public SinHalfWaveRectifiedSignal(Double amplitude, Double period, Double startTime){
-        super(amplitude);
+        super(amplitude, SignalStorageType.Continuous);
         this.period = period;
         this.startTime = startTime;
     }

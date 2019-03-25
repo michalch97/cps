@@ -11,8 +11,8 @@ import signals.Signal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignalView {
-    String name;
-    Signal signal;
-    SignalParameters signalParameters;
-    SignalType signalType;
+    private String name;
+    private Signal signal;
+    private SignalParameters signalParameters;
+    private SignalType signalType;
 }

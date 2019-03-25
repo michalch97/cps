@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import signals.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SignalGeneratorTest {
 
@@ -90,7 +90,8 @@ class SignalGeneratorTest {
 
     @Test
     void generateUnitStepSignal() {
-        UnitStepSignal unitStepSignal = new UnitStepSignal(10.d, 0.d);
+        List<Double> xValues = SignalGenerator.generateDiscreteXValues(-10.d, 20.d, 0.1d);
+        UnitStepSignal unitStepSignal = new UnitStepSignal(xValues, 10.d, 0.d);
         SignalGenerator signalGenerator = new SignalGenerator(unitStepSignal, -10.d, 20.d, 0.1d);
 
         List<Point> points = signalGenerator.generateSignal();
@@ -100,7 +101,9 @@ class SignalGeneratorTest {
 
     @Test
     void generateUnitImpulseSignal() {
-        UnitImpulseSignal unitImpulseSignal = new UnitImpulseSignal(10.d, 1, 6, 0.001d);
+        List<Double> xValues = SignalGenerator.generateDiscreteXValues(-25.d, 50.d, 0.0001d);
+
+        UnitImpulseSignal unitImpulseSignal = new UnitImpulseSignal(xValues, 10.d, 1.d);
         SignalGenerator signalGenerator = new SignalGenerator(unitImpulseSignal, -25.d, 50.d, 0.0001d);
 
         List<Point> points = signalGenerator.generateSignalForDiscretization();

@@ -1,5 +1,7 @@
 package signals;
 
+import signalUtils.SignalStorageType;
+
 public class RectangularSymmetricalSignal extends Signal{
     private Double period;
     private Double startTime;
@@ -7,7 +9,7 @@ public class RectangularSymmetricalSignal extends Signal{
     private Double k;
 
     public RectangularSymmetricalSignal(Double amplitude, Double period, Double startTime, Double dutyCycle) {
-        super(amplitude);
+        super(amplitude, SignalStorageType.Continuous);
         this.period = period;
         this.startTime = startTime;
         this.dutyCycle = dutyCycle;//przez jaka czesc okresu wartosc ma byc rowna A

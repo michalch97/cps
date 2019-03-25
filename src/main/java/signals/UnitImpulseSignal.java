@@ -1,13 +1,16 @@
 package signals;
 
+import java.util.Collection;
 import java.util.Objects;
 
-public class UnitImpulseSignal extends Signal {
+import signalUtils.SignalStorageType;
+
+public class UnitImpulseSignal extends DiscreteSignal {
 
     private Double impulseSample;
 
-    public UnitImpulseSignal(Double amplitude, Double impulseSample) {
-        super(amplitude);
+    public UnitImpulseSignal(Collection<Double> xPoints, Double amplitude, Double impulseSample) {
+        super(xPoints, SignalStorageType.Discrete, amplitude);
         this.impulseSample = impulseSample;
     }
 
