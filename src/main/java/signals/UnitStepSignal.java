@@ -8,8 +8,8 @@ import signalUtils.SignalStorageType;
 public class UnitStepSignal extends DiscreteSignal {
     private Double startTime;
 
-    public UnitStepSignal(Collection<Double> xPoints, Double amplitude, Double startTime){
-        super(xPoints, SignalStorageType.Discrete, amplitude);
+    public UnitStepSignal(Collection<Double> xPoints, Double amplitude, Double startTime, Double timeStep){
+        super(xPoints, SignalStorageType.Discrete, amplitude, timeStep);
         this.startTime = startTime;
     }
 

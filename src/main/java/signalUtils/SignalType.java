@@ -11,5 +11,6 @@ public enum SignalType {
     SIN,
     TRIANGULAR,
     UNIT_IMPULSE,
-    UNIT_STEP
+    UNIT_STEP,
+    FIXED_SIGNAL
 }

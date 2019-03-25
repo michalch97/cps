@@ -63,8 +63,8 @@ public class MainWindowService extends Service {
         new RemoveSignalService(this, signalView);
     }
 
-    public void openSaveDialog() {
-        new SaveDialogService(this);
+    public void openSaveDialog(SignalView selectedItem) {
+        new SaveDialogService(this, selectedItem);
     }
 
     public void openLoadDialog() {

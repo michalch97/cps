@@ -13,10 +13,12 @@ import signalUtils.SignalStorageType;
 public abstract class DiscreteSignal extends Signal {
 
     private Collection<Double> xPoints;
+    private Double timeStep;
 
-    public DiscreteSignal(Collection<Double> xPoints, SignalStorageType storageType, Double amplitude) {
+    public DiscreteSignal(Collection<Double> xPoints, SignalStorageType storageType, Double amplitude, Double timeStep) {
         super(amplitude, storageType);
         this.xPoints = xPoints;
+        this.timeStep = timeStep;
     }
 
     public List<Double> calculateValues() {

@@ -9,8 +9,8 @@ public class UnitImpulseSignal extends DiscreteSignal {
 
     private Double impulseSample;
 
-    public UnitImpulseSignal(Collection<Double> xPoints, Double amplitude, Double impulseSample) {
-        super(xPoints, SignalStorageType.Discrete, amplitude);
+    public UnitImpulseSignal(Collection<Double> xPoints, Double amplitude, Double impulseSample, Double timeStep) {
+        super(xPoints, SignalStorageType.Discrete, amplitude, timeStep);
         this.impulseSample = impulseSample;
     }
 

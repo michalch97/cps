@@ -9,6 +9,7 @@ import signals.*;
 public class SignalFactory {
 
     public static Signal createSignal(SignalParameters parameters, SignalType type) {
+        Double discreteTimeStep = 1.d;
         List<Double> xValues = SignalGenerator.generateDiscreteXValues(parameters.getStartTime(), parameters.getDuration(), 1.d);
 
         switch (type) {
@@ -31,9 +32,9 @@ public class SignalFactory {
             case TRIANGULAR:
                 return new TriangularSignal(parameters.getAmplitude(), parameters.getPeriod(), parameters.getStartTime(), parameters.getFillFactor());
             case UNIT_IMPULSE:
-                return new UnitImpulseSignal(xValues, parameters.getAmplitude(), parameters.getStartTime());
+                return new UnitImpulseSignal(xValues, parameters.getAmplitude(), parameters.getStartTime(), discreteTimeStep);
             case UNIT_STEP:
-                return new UnitStepSignal(xValues, parameters.getAmplitude(), parameters.getStartTime());
+                return new UnitStepSignal(xValues, parameters.getAmplitude(), parameters.getStartTime(), discreteTimeStep);
             default:
                 throw new UnknownSignalTypeException("Error during signal creation");
         }

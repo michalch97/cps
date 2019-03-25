@@ -8,7 +8,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import services.CreateSignalService;
 import signalUtils.SignalParameters;
 import signalUtils.SignalType;
@@ -68,6 +67,7 @@ public class CreateSignalController extends Controller implements ServiceBindabl
 
     private void initComboBox() {
         ObservableList<SignalType> signalTypes = FXCollections.observableArrayList(SignalType.values());
+        signalTypes.remove(SignalType.FIXED_SIGNAL);
         SignalTypeComboBox.setItems(signalTypes);
 
         CreateButton.disableProperty().bind(SignalTypeComboBox.valueProperty().isNull()

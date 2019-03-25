@@ -90,8 +90,9 @@ class SignalGeneratorTest {
 
     @Test
     void generateUnitStepSignal() {
-        List<Double> xValues = SignalGenerator.generateDiscreteXValues(-10.d, 20.d, 0.1d);
-        UnitStepSignal unitStepSignal = new UnitStepSignal(xValues, 10.d, 0.d);
+        Double timeStep = 0.1d;
+        List<Double> xValues = SignalGenerator.generateDiscreteXValues(-10.d, 20.d, timeStep);
+        UnitStepSignal unitStepSignal = new UnitStepSignal(xValues, 10.d, 0.d, timeStep);
         SignalGenerator signalGenerator = new SignalGenerator(unitStepSignal, -10.d, 20.d, 0.1d);
 
         List<Point> points = signalGenerator.generateSignal();
@@ -101,9 +102,10 @@ class SignalGeneratorTest {
 
     @Test
     void generateUnitImpulseSignal() {
-        List<Double> xValues = SignalGenerator.generateDiscreteXValues(-25.d, 50.d, 0.0001d);
+        Double timeStep = 0.0001d;
+        List<Double> xValues = SignalGenerator.generateDiscreteXValues(-25.d, 50.d, timeStep);
 
-        UnitImpulseSignal unitImpulseSignal = new UnitImpulseSignal(xValues, 10.d, 1.d);
+        UnitImpulseSignal unitImpulseSignal = new UnitImpulseSignal(xValues, 10.d, 1.d, timeStep);
         SignalGenerator signalGenerator = new SignalGenerator(unitImpulseSignal, -25.d, 50.d, 0.0001d);
 
         List<Point> points = signalGenerator.generateSignalForDiscretization();

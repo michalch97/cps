@@ -46,7 +46,8 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
 
 
     public void onSaveSignalClicked(ActionEvent actionEvent) {
-        windowService.openSaveDialog();
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        windowService.openSaveDialog(selectedItem);
     }
 
     public void onLoadSignalClicked(ActionEvent actionEvent) {

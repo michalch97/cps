@@ -1,6 +1,8 @@
 package signalGenerators;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
@@ -8,8 +10,10 @@ import java.util.stream.IntStream;
 
 import lombok.Getter;
 import lombok.NonNull;
+import org.apache.commons.collections4.CollectionUtils;
 import signalUtils.SignalStorageType;
 import signals.DiscreteSignal;
+import signals.FixedSignal;
 import signals.Signal;
 
 @Getter
@@ -36,10 +40,33 @@ public class SignalGenerator {
         }
     }
 
+    public Double getTimeStep() {
+        if (signal instanceof DiscreteSignal) {
+            Collection<Double> xPoints = ((DiscreteSignal) signal).getXPoints();
+
+            if (CollectionUtils.isNotEmpty(xPoints) && xPoints.size() > 1) {
+                Iterator<Double> iterator = xPoints.iterator();
+                Double first = iterator.next();
+                Double second = iterator.next();
+
+                return second - first;
+            } else {
+                return 0.d;
+            }
+        } else {
+            return timeStep;
+        }
+    }
+
     public List<Point> generateSignalForDiscretization() {
         List<Double> xValues;
         if (signal instanceof DiscreteSignal) {
-            xValues = new ArrayList<>(((DiscreteSignal) signal).getXPoints());
+            if (signal instanceof FixedSignal) {
+                return new ArrayList<>(((FixedSignal) signal).getPoints());
+            } else {
+                xValues = new ArrayList<>(((DiscreteSignal) signal).getXPoints());
+            }
+
         } else {
             xValues = generateDiscreteXValues();
         }
