@@ -100,21 +100,21 @@ class SignalGeneratorTest {
 
     @Test
     void generateUnitImpulseSignal() {
-        UnitImpulseSignal unitImpulseSignal = new UnitImpulseSignal(10.d, 1,6,0.001d);
+        UnitImpulseSignal unitImpulseSignal = new UnitImpulseSignal(10.d, 1, 6, 0.001d);
         SignalGenerator signalGenerator = new SignalGenerator(unitImpulseSignal, -25.d, 50.d, 0.0001d);
 
         List<Point> points = signalGenerator.generateSignalForDiscretization();
 
-        assertEquals(50000,points.size());
+        assertEquals(50000, points.size());
     }
 
     @Test
     void generateImpulseNoiseSignal() {
-        ImpulseNoiseSignal impulseNoiseSignal = new ImpulseNoiseSignal(10.d,0.001d,0.75);
+        ImpulseNoiseSignal impulseNoiseSignal = new ImpulseNoiseSignal(10.d, 0.001d, 0.75);
         SignalGenerator signalGenerator = new SignalGenerator(impulseNoiseSignal, -25.d, 50.d, 0.0001d);
 
         List<Point> points = signalGenerator.generateSignalForDiscretization();
 
-        assertEquals(50000,points.size());
+        assertEquals(50000, points.size());
     }
 }
