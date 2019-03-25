@@ -1,9 +1,11 @@
 package controllers;
 
+import java.text.DecimalFormat;
+
 import javafx.scene.control.TextField;
 import services.SignalParametersService;
+import signalUtils.SignalAttributes;
 import signalUtils.SignalParameters;
-import viewItems.SignalView;
 
 public class SignalParametersController implements ServiceBindable<SignalParametersService> {
     public TextField AverageField;
@@ -27,14 +29,20 @@ public class SignalParametersController implements ServiceBindable<SignalParamet
     }
 
     private void initFields() {
-        // TODO calculate attributes for signal
-        SignalView selectedItem = signalParametersService.getSelectedItem();
-        SignalParameters signalParameters = selectedItem.getSignalParameters();
+        SignalAttributes signalAttributes = signalParametersService.getSignalAttributes();
+        SignalParameters signalParameters = signalAttributes.getSignalParameters();
 
-        StartTimeField.setText(String.valueOf(signalParameters.getStartTime()));
-        DurationField.setText(String.valueOf(signalParameters.getDuration()));
-        PeriodField.setText(String.valueOf(signalParameters.getPeriod()));
-        FillFactorField.setText(String.valueOf(signalParameters.getFillFactor()));
+        DecimalFormat df = new DecimalFormat("#0.0000");
+
+        StartTimeField.setText(df.format(signalParameters.getStartTime()));
+        DurationField.setText(df.format(signalParameters.getDuration()));
+        PeriodField.setText(df.format(signalParameters.getPeriod()));
+        FillFactorField.setText(df.format(signalParameters.getFillFactor()));
+        AverageField.setText(df.format(signalAttributes.getAverage()));
+        AverageMeanValueField.setText(df.format(signalAttributes.getMeanAverage()));
+        EffectiveValueField.setText(df.format(signalAttributes.getEffectiveValue()));
+        VariationField.setText(df.format(signalAttributes.getVariation()));
+        AveragePowerField.setText(df.format(signalAttributes.getAveragePower()));
     }
 
     private void disableFieldEditing() {

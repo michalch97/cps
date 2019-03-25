@@ -119,4 +119,11 @@ class SignalTest {
     private static Stream<Signal> getSignalImplementations() {
         return Stream.of(new NoiseSignal(amplitude));
     }
+
+    @Test
+    void signalIntegrator() {
+        Double result = Signal.signalIntegrator(1.d, 5.d, Math::exp);
+
+        assertEquals(145.59, result, 0.3d);
+    }
 }
