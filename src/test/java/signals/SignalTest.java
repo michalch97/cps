@@ -80,7 +80,7 @@ class SignalTest {
     @Test
     void substractTwoSignals(){
         SinSignal sinSignal1 = new SinSignal(10.d, 6.d, 0.d);
-        SinSignal sinSignal2 = new SinSignal(10.d, 6.d, 0.d);
+        SinSignal sinSignal2 = new SinSignal(20.d, 6.d, 0.d);
         SignalGenerator signalGenerator1 = new SignalGenerator(sinSignal1, 0.d, 5.d, 0.1d);
         SignalGenerator signalGenerator2 = new SignalGenerator(sinSignal2, 0.d, 5.d, 0.1d);
         List<Point> points1 = signalGenerator1.generateSignal();
@@ -105,10 +105,10 @@ class SignalTest {
 
     @Test
     void divideTwoSignals(){
-        SinSignal sinSignal1 = new SinSignal(10.d, 6.d, 0.d);
-        SinSignal sinSignal2 = new SinSignal(10.d, 6.d, 2d);
+        SinSignal sinSignal1 = new SinSignal(20.d, 6.d, 0.d);
+        SinSignal sinSignal2 = new SinSignal(10.d, 6.d, 0.d);
         SignalGenerator signalGenerator1 = new SignalGenerator(sinSignal1, 0.d, 5.d, 0.1d);
-        SignalGenerator signalGenerator2 = new SignalGenerator(sinSignal2, 1.5d, 5.d, 0.1d);
+        SignalGenerator signalGenerator2 = new SignalGenerator(sinSignal2, 0.d, 5.d, 0.1d);
         List<Point> points1 = signalGenerator1.generateSignal();
         List<Point> points2 = signalGenerator2.generateSignal();
         SignalOperations signalOperations = new SignalOperations();

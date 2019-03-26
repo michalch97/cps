@@ -97,7 +97,7 @@ class SignalGeneratorTest {
 
         List<Point> points = signalGenerator.generateSignal();
 
-        assertEquals(200, points.size());
+        assertEquals(20, points.size());
     }
 
     @Test
@@ -110,7 +110,7 @@ class SignalGeneratorTest {
 
         List<Point> points = signalGenerator.generateSignalForDiscretization();
 
-        assertEquals(50000, points.size());
+        assertEquals(50, points.size());
     }
 
     @Test
@@ -120,6 +120,6 @@ class SignalGeneratorTest {
 
         List<Point> points = signalGenerator.generateSignalForDiscretization();
 
-        assertEquals(50000, points.size());
+        assertEquals(50, points.size());
     }
 }

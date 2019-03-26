@@ -54,7 +54,7 @@ public class SignalOperationService extends Service {
         }
 
         SignalGenerator firstSignalGenerator = new SignalGenerator(firstSignal, firstSignalParameters.getStartTime(), firstSignalParameters.getDuration(), timeStep);
-        SignalGenerator secondSignalGenerator = new SignalGenerator(firstSignal, secondSignalParameters.getStartTime(), secondSignalParameters.getDuration(), timeStep);
+        SignalGenerator secondSignalGenerator = new SignalGenerator(secondSignal, secondSignalParameters.getStartTime(), secondSignalParameters.getDuration(), timeStep);
         List<Point> firstPoints = firstSignalGenerator.generateSignal();
         List<Point> secondPoints = secondSignalGenerator.generateSignal();
 
