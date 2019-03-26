@@ -46,26 +46,25 @@ public class SignalOperations {
     }
 
     public List<Point> divide(List<Point> signal1, List<Point> signal2, Double step) {
+        double smallValue = 0.000_000_001;
 
         if (!init(signal1, signal2, step))
             return new ArrayList<>();
         if (sign > 0.d) {
             for (int i = 0; i < points.size(); i++) {
                 if (pom.get(i + start).getY() == 0.d) {
-                    Double zeroCase = (points.get(i).getY() > 0.d) ? Double.MAX_VALUE : -Double.MAX_VALUE;
-                    points.get(i).setY(zeroCase);
-                }
-                else{
+                    double zeroCase = (points.get(i).getY() > 0.d) ? smallValue : -smallValue;
+                    points.get(i).setY(points.get(i).getY() / zeroCase);
+                }  else {
                     points.get(i).setY(points.get(i).getY() / pom.get(i + start).getY());
                 }
             }
         } else {
             for (int i = 0; i < points.size(); i++) {
                 if (points.get(i).getY() == 0.d) {
-                    Double zeroCase = (pom.get(i + start).getY() > 0.d) ? Double.MAX_VALUE : -Double.MAX_VALUE;
-                    points.get(i).setY(zeroCase);
-                }
-                else{
+                    double zeroCase = (points.get(i).getY() > 0.d) ? smallValue : -smallValue;
+                    points.get(i).setY(points.get(i + start).getY() / zeroCase);
+                } else {
                     points.get(i).setY(pom.get(i + start).getY() / points.get(i).getY());
                 }
             }

@@ -1,6 +1,7 @@
 package services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,6 +17,7 @@ public class ChartService extends Service {
     private static final String fxmlChartWindowFileName = "fxml/chartWindow.fxml";
     private SignalView selectedItem;
     private List<Point> points;
+    private boolean isLogarithmic;
 
     public ChartService(SignalView selectedItem) {
         this.selectedItem = selectedItem;
@@ -36,5 +38,23 @@ public class ChartService extends Service {
         SignalGenerator signalGenerator = new SignalGenerator(selectedItem.getSignal(), signalParameters.getStartTime(), signalParameters.getDuration(), 0.01d);
 
         points = signalGenerator.generateSignal();
+        points = filterValuesTooHighForChart(points);
+    }
+
+    private List<Point> filterValuesTooHighForChart(List<Point> points) {
+        double limitValue = 1e3;
+        return points.stream()
+                     .map(point -> {
+                         if (point.getY() > limitValue) {
+                             isLogarithmic = true;
+                            return new Point(point.getX(), limitValue);
+                         } else if (point.getY() < -limitValue) {
+                             isLogarithmic = true;
+                             return new Point(point.getX(), -limitValue);
+                         } else {
+                             return point;
+                         }
+                     })
+                     .collect(Collectors.toList());
     }
 }

@@ -15,4 +15,9 @@ public class SignalView {
     private Signal signal;
     private SignalParameters signalParameters;
     private SignalType signalType;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

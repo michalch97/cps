@@ -33,17 +33,17 @@ public class MainWindowService extends Service {
     public void createMockSignal() {
         SignalParameters signalParameters = SignalParameters.builder()
                                                             .amplitude(10.d)
-                                                            .period(1.337d)
-                                                            .duration(4.20d)
+                                                            .period(2.d)
+                                                            .duration(6.d)
                                                             .startTime(0.d)
-                                                            .fillFactor(6.9d)
+                                                            .fillFactor(0.d)
                                                             .build();
 
-        Signal signal = SignalFactory.createSignal(signalParameters, SignalType.NOISE);
-        SignalView signalView = new SignalView("Name ABC", signal, signalParameters, SignalType.NOISE);
+        Signal signal = SignalFactory.createSignal(signalParameters, SignalType.SIN);
+        SignalView signalView = new SignalView("Sin 1", signal, signalParameters, SignalType.SIN);
         addSignal(signalView);
-        signal = SignalFactory.createSignal(signalParameters, SignalType.UNIT_IMPULSE);
-        signalView = new SignalView("Name Unit", signal, signalParameters, SignalType.UNIT_IMPULSE);
+        signal = SignalFactory.createSignal(signalParameters, SignalType.SIN);
+        signalView = new SignalView("Sin 2", signal, signalParameters, SignalType.SIN);
         addSignal(signalView);
     }
 
