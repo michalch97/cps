@@ -8,15 +8,18 @@ import signalUtils.SignalStorageType;
 public class UnitImpulseSignal extends DiscreteSignal {
 
     private Double impulseSample;
+    private static Double jump;
 
     public UnitImpulseSignal(Collection<Double> xPoints, Double amplitude, Double impulseSample, Double timeStep) {
         super(xPoints, SignalStorageType.Discrete, amplitude, timeStep);
         this.impulseSample = impulseSample;
+        this.jump = 0.d;
     }
 
     @Override
     public Double calculateValue(Double sample) {
-        if (Objects.equals(sample, impulseSample)) {
+        jump = jump + 1.d;
+        if (Objects.equals(jump, impulseSample)) {
             return getMaxAmplitude();
         }
 

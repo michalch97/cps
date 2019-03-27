@@ -17,6 +17,7 @@ public class CreateSignalController extends Controller implements ServiceBindabl
     public ComboBox<SignalType> SignalTypeComboBox;
     public Spinner<Double> AmplitudeSpinner;
     public Spinner<Double> StartTimeSpinner;
+    public Spinner<Double> JumpSpinner;
     public Spinner<Double> DurationSpinner;
     public Spinner<Double> BasePeriodSpinner;
     public Spinner<Double> FillCoefficiencySpinner;
@@ -37,6 +38,7 @@ public class CreateSignalController extends Controller implements ServiceBindabl
         SignalParameters signalParameters = SignalParameters.builder()
                                                             .amplitude(AmplitudeSpinner.getValue())
                                                             .startTime(StartTimeSpinner.getValue())
+                                                            .jumpTime(JumpSpinner.getValue())
                                                             .duration(DurationSpinner.getValue())
                                                             .period(BasePeriodSpinner.getValue())
                                                             .fillFactor(FillCoefficiencySpinner.getValue())
@@ -54,12 +56,14 @@ public class CreateSignalController extends Controller implements ServiceBindabl
     private void initSpinners() {
         AmplitudeSpinner.setValueFactory(new DoubleSpinnerValueFactory(0.d, Double.MAX_VALUE, 0.0d, 0.1d));
         StartTimeSpinner.setValueFactory(new DoubleSpinnerValueFactory(-Double.MAX_VALUE, Double.MAX_VALUE, 0.0d, 0.1d));
+        JumpSpinner.setValueFactory(new DoubleSpinnerValueFactory(-Double.MAX_VALUE, Double.MAX_VALUE, 0.0d, 0.1d));
         DurationSpinner.setValueFactory(new DoubleSpinnerValueFactory(0.d, Double.MAX_VALUE, 0.0d, 0.1d));
         BasePeriodSpinner.setValueFactory(new DoubleSpinnerValueFactory(0.d, Double.MAX_VALUE, 0.0d, 0.1d));
         FillCoefficiencySpinner.setValueFactory(new DoubleSpinnerValueFactory(0.d, Double.MAX_VALUE, 0.0d, 0.1d));
 
         AmplitudeSpinner.setEditable(true);
         StartTimeSpinner.setEditable(true);
+        JumpSpinner.setEditable(true);
         DurationSpinner.setEditable(true);
         BasePeriodSpinner.setEditable(true);
         FillCoefficiencySpinner.setEditable(true);

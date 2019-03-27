@@ -83,6 +83,23 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <Label fx:id="JumpLabel" prefWidth="210.0" styleClass="text" text="Czas skoku / numer próbki do skoku:">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Spinner fx:id="JumpSpinner" maxWidth="1.7976931348623157E308" prefHeight="30.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="10.0" right="5.0" />
+                     </HBox.margin>
+                  </Spinner>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
                   <Label fx:id="DurationLabel" prefWidth="210.0" styleClass="text" text="Czas trwania sygnału:">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
