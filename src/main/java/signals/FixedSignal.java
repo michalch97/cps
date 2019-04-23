@@ -1,9 +1,9 @@
 package signals;
 
-import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import exceptions.SignalOperationNotSupportedException;
 import lombok.Getter;
 import signalGenerators.Point;
 import signalUtils.SignalStorageType;
@@ -11,15 +11,19 @@ import signalUtils.SignalStorageType;
 @Getter
 public class FixedSignal extends DiscreteSignal {
 
-    private final Collection<Point> points;
+    private final List<Point> points;
+    private Double timeStep;
 
-    public FixedSignal(Collection<Point> points, Double amplitude, Double timeStep) {
+    public FixedSignal(List<Point> points, Double amplitude, Double timeStep) {
         super(points.stream().map(Point::getX).collect(Collectors.toList()), SignalStorageType.Discrete, amplitude, timeStep);
+
         this.points = points;
+        this.timeStep = timeStep;
     }
 
     @Override
     public Double calculateValue(Double xPoint) {
-        throw new SignalOperationNotSupportedException();
+        Point point = points.stream().min(Comparator.comparingDouble(o -> Math.abs(o.getX() - xPoint))).get();
+        return point.getY();
     }
 }

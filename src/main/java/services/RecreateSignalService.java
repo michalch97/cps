@@ -36,15 +36,14 @@ public class RecreateSignalService extends Service {
         createScene(dialog, fxmlCreateSignalFileName);
     }
 
-    public void recreateSignal(String signalName) {
+    public void recreateSignal(String signalName, Double timeStep) {
         Signal signal = signalView.getSignal();
         SignalParameters signalParameters = signalView.getSignalParameters();
         if (signal instanceof DiscreteSignal) {
-            Double timeStep = ((DiscreteSignal) signal).getTimeStep();
             Collection<Double> xPoints = ((DiscreteSignal) signal).getXPoints();
             List<Point> points = xPoints.stream().map(xPoint -> new Point(xPoint, signal.calculateValue(xPoint))).collect(Collectors.toList());
 
-            RecreatedSignal recreatedSignal = new RecreatedSignal(points, signalParameters.getStartTime(), timeStep, signalParameters.getAmplitude());
+            RecreatedSignal recreatedSignal = new RecreatedSignal(points, signalParameters.getStartTime(), ((DiscreteSignal) signal).getTimeStep(), signalParameters.getAmplitude());
             SignalView view = new SignalView(signalName, recreatedSignal, signalParameters, SignalType.FIXED_SIGNAL);
             mainWindowService.addSignal(view);
         }

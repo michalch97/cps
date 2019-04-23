@@ -11,11 +11,14 @@ public class SignalQuantization {
     public static List<Point> quantizeSignal(Signal signal, SignalParameters parameters, Double timeStep, Integer quantumClassCount) {
         List<Point> points = generateDiscretePoint(signal, parameters, timeStep);
         Double minAmplitude = signal.getMinAmplitude();
-        Double quantumClassLength = getQuantumClassLength(minAmplitude, signal.getMaxAmplitude(), quantumClassCount);
+        Double maxAmplitude = signal.getMaxAmplitude();
+        double offset = (maxAmplitude - minAmplitude) / 2;
+
+        Double quantumClassLength = getQuantumClassLength(minAmplitude, maxAmplitude, quantumClassCount);
 
         return points.stream().map(point -> {
-            double quantumClass = (point.getY() - minAmplitude) / quantumClassLength;
-            return new Point(point.getX(), quantumClass);
+            int quantumClass = (int)((point.getY() - minAmplitude) / quantumClassLength);
+            return new Point(point.getX(), quantumClass * quantumClassLength - offset);
         }).collect(Collectors.toList());
     }
 

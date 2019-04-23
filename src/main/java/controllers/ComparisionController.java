@@ -27,6 +27,10 @@ public class ComparisionController extends Controller implements ServiceBindable
     }
 
     public void onSaveClicked(ActionEvent event) {
+        SignalView otherView = SecondSignalComboBox.getValue();
+        service.compareSignals(otherView);
+
+        closeWindow(SaveButton);
     }
 
     public void onCancelClicked(ActionEvent event) {

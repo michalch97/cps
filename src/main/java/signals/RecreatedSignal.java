@@ -22,12 +22,17 @@ public class RecreatedSignal extends Signal {
     public Double calculateValue(Double xPoint) {
         int point = (int) ((xPoint - start) / timeStep);
 
-        if (point >= 0 && point < points.size() - 1) {
+        if (point >= 0 && point < points.size()) {
             Point firstValue = points.get(point);
-            Point secondValue = points.get(point + 1);
+            Point secondValue;
+            if (point == points.size() - 1) {
+                secondValue = firstValue;
+            } else {
+                secondValue = points.get(point + 1);
+            }
 
-            double distanceToAnotherPoint = (secondValue.getX() - xPoint) / timeStep;
-            return (secondValue.getY() - firstValue.getY()) * distanceToAnotherPoint;
+            double distanceToAnotherPoint = (xPoint - firstValue.getX()) / timeStep;
+            return firstValue.getY() + (secondValue.getY() - firstValue.getY()) * distanceToAnotherPoint;
         }
 
         return 0.d;
