@@ -26,6 +26,10 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     public Button LoadSignalInTextButton;
     public Button AddSignalButton;
     public Button RemoveSignalButton;
+    public Button SampleButton;
+    public Button QuantizeButton;
+    public Button RecreateButton;
+    public Button CompareButton;
 
     MainWindowService windowService;
 
@@ -110,6 +114,10 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     private void initSelectionBindings() {
         SaveSignalButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         RemoveSignalButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        SampleButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        QuantizeButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        RecreateButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        CompareButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         ShowChartButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         ShowHistogramButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         ShowParametersButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
@@ -117,5 +125,33 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
         MultiplicationOperationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         SubtractionOperationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         DivisionOperationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+    }
+
+    public void OnSampleClicked(ActionEvent event) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.sampleSignal(selectedItem);
+        }
+    }
+
+    public void OnQuantizeClicked(ActionEvent event) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.quantizeSignal(selectedItem);
+        }
+    }
+
+    public void OnRecreateClicked(ActionEvent event) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.recreateSignal(selectedItem);
+        }
+    }
+
+    public void OnCompareClicked(ActionEvent event) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.compareSignal(selectedItem);
+        }
     }
 }

@@ -55,6 +55,22 @@ public class MainWindowService extends Service {
         signals.remove(signalView);
     }
 
+    public void sampleSignal(SignalView signalView) {
+        new SampleSignalService(this, signalView);
+    }
+
+    public void quantizeSignal(SignalView signalView) {
+        new QuantizeSignalService(this, signalView);
+    }
+
+    public void recreateSignal(SignalView signalView) {
+        new RecreateSignalService(this, signalView);
+    }
+
+    public void compareSignal(SignalView signalView) {
+        new CompareSignalsService(this, signalView);
+    }
+
     public void openAddNewSignalDialog() {
         new CreateSignalService(this);
     }

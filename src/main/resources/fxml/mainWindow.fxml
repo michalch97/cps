@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <stylesheets>
       <URL value="@../css/buttons.css" />
@@ -113,6 +107,26 @@
                      </HBox.margin>
                   </Button>
                   <Button fx:id="LoadSignalInTextButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onLoadTextSignalClicked" styleClass="iconButton, loadTextButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="SampleButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#OnSampleClicked" styleClass="iconButton, sampleButton">
+                     <HBox.margin>
+                        <Insets left="15.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="QuantizeButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#OnQuantizeClicked" styleClass="iconButton, quantizeButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="RecreateButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#OnRecreateClicked" styleClass="iconButton, recreateButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="CompareButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#OnCompareClicked" styleClass="iconButton, compareButton">
                      <HBox.margin>
                         <Insets left="5.0" right="15.0" />
                      </HBox.margin>

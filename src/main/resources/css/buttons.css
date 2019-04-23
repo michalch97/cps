@@ -56,3 +56,19 @@
 .loadTextButton {
   -fx-background-image: url("../icons/open-txt.png");
 }
+
+.sampleButton {
+  -fx-background-image: url("../icons/sample.png");
+}
+
+.quantizeButton {
+  -fx-background-image: url("../icons/quantize.png");
+}
+
+.recreateButton {
+  -fx-background-image: url("../icons/recreate.png");
+}
+
+.compareButton {
+  -fx-background-image: url("../icons/comparison.png");
+}
