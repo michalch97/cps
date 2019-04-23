@@ -22,6 +22,9 @@ public class RecreateController extends Controller implements ServiceBindable<Re
     }
 
     public void onSaveClicked(ActionEvent event) {
+        String signalName = newSignalName.getText();
+        service.recreateSignal(signalName);
+        closeWindow(SaveButton);
     }
 
     public void onCancelClicked(ActionEvent event) {

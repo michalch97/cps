@@ -24,6 +24,11 @@ public class SampleController extends Controller implements ServiceBindable<Samp
     }
 
     public void onCreateButtonClicked(ActionEvent event) {
+        Double frequency = FrequencySpinner.getValue();
+        String signalName = SignalNameField.getText();
+
+        service.createSampledSignal(signalName, frequency);
+        closeWindow(CreateButton);
     }
 
     public void onCancelButtonClicked(ActionEvent event) {

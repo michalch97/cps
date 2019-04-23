@@ -26,6 +26,13 @@ public class QuantizeController extends Controller implements ServiceBindable<Qu
     }
 
     public void onCreateButtonClicked(ActionEvent event) {
+        Double timeStep = FrequencySpinner.getValue();
+        Integer quantumStepCount = StepCountSpinner.getValue();
+        String signalName = SignalNameField.getText();
+
+        service.createQuantizedSignal(signalName, timeStep, quantumStepCount);
+        closeWindow(CreateButton);
+
     }
 
     public void onCancelButtonClicked(ActionEvent event) {
