@@ -33,8 +33,8 @@ public class MainWindowService extends Service {
     public void createMockSignal() {
         SignalParameters signalParameters = SignalParameters.builder()
                                                             .amplitude(10.d)
-                                                            .period(2.d)
-                                                            .duration(6.d)
+                                                            .period(1/100.d)
+                                                            .duration(0.1d)
                                                             .startTime(0.d)
                                                             .fillFactor(0.d)
                                                             .build();
@@ -42,7 +42,7 @@ public class MainWindowService extends Service {
         Signal signal = SignalFactory.createSignal(signalParameters, SignalType.SIN);
         SignalView signalView = new SignalView("Sin 1", signal, signalParameters, SignalType.SIN);
         addSignal(signalView);
-        signal = SignalFactory.createSignal(signalParameters, SignalType.SIN);
+        signal = SignalFactory.createSignal(signalParameters.toBuilder().period(1/1100.d).build(), SignalType.SIN);
         signalView = new SignalView("Sin 2", signal, signalParameters, SignalType.SIN);
         addSignal(signalView);
     }

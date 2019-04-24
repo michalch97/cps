@@ -6,6 +6,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.util.converter.DoubleStringConverter;
 import services.QuantizeSignalService;
 
 public class QuantizeController extends Controller implements ServiceBindable<QuantizeSignalService> {
@@ -40,7 +41,10 @@ public class QuantizeController extends Controller implements ServiceBindable<Qu
     }
 
     private void initSpinners() {
-        FrequencySpinner.setValueFactory(new DoubleSpinnerValueFactory(Double.MIN_VALUE, Double.MAX_VALUE, 0.1d, 0.1d));
+        DoubleSpinnerValueFactory valueFactory = new DoubleSpinnerValueFactory(Double.MIN_VALUE, Double.MAX_VALUE, 0.1d, 0.1d);
+        valueFactory.setConverter(new DoubleStringConverter());
+        FrequencySpinner.setValueFactory(valueFactory);
+
         StepCountSpinner.setValueFactory(new IntegerSpinnerValueFactory(2, Integer.MAX_VALUE, 2, 1));
         FrequencySpinner.setEditable(true);
         StepCountSpinner.setEditable(true);

@@ -36,7 +36,7 @@ public class RecreateSignalService extends Service {
         createScene(dialog, fxmlCreateSignalFileName);
     }
 
-    public void recreateSignal(String signalName, Double timeStep) {
+    public void recreateSignal(String signalName) {
         Signal signal = signalView.getSignal();
         SignalParameters signalParameters = signalView.getSignalParameters();
         if (signal instanceof DiscreteSignal) {

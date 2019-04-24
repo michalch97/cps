@@ -3,15 +3,12 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 import javafx.scene.control.TextField;
 import services.RecreateSignalService;
 
 public class RecreateController extends Controller implements ServiceBindable<RecreateSignalService> {
     public TextField newSignalName;
     public Label SignalName;
-    public Spinner<Double> InterpolationSpinner;
     public Button SaveButton;
     public Button CancelButton;
 
@@ -26,8 +23,7 @@ public class RecreateController extends Controller implements ServiceBindable<Re
 
     public void onSaveClicked(ActionEvent event) {
         String signalName = newSignalName.getText();
-        Double timeStep = InterpolationSpinner.getValue();
-        service.recreateSignal(signalName, timeStep);
+        service.recreateSignal(signalName);
         closeWindow(SaveButton);
     }
 
@@ -37,8 +33,6 @@ public class RecreateController extends Controller implements ServiceBindable<Re
 
     private void initSignalNames() {
         SignalName.setText(service.getSignalView().getName());
-        InterpolationSpinner.setValueFactory(new DoubleSpinnerValueFactory(Double.MIN_VALUE, Double.MAX_VALUE, 0.1d, 0.1d));
-
         SaveButton.disableProperty().bind(SignalName.textProperty().isEmpty());
     }
 }

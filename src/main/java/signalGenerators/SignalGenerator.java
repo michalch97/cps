@@ -102,7 +102,7 @@ public class SignalGenerator {
 
     public static List<Double> generateXValues(Double startTime, Double duration, Double timeStep) {
         return DoubleStream.iterate(startTime, value -> value + timeStep)
-                           .limit((long) (duration / timeStep))
+                           .limit((long) (duration / timeStep) + 1)
                            .boxed()
                            .collect(Collectors.toList());
     }

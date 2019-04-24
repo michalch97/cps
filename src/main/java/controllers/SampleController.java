@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.util.converter.DoubleStringConverter;
 import services.SampleSignalService;
 
 public class SampleController extends Controller implements ServiceBindable<SampleSignalService> {
@@ -36,7 +37,10 @@ public class SampleController extends Controller implements ServiceBindable<Samp
     }
 
     private void initSpinners() {
-        FrequencySpinner.setValueFactory(new DoubleSpinnerValueFactory(Double.MIN_VALUE, Double.MAX_VALUE, 0.1d, 0.1d));
+        DoubleSpinnerValueFactory valueFactory = new DoubleSpinnerValueFactory(Double.MIN_VALUE, Double.MAX_VALUE, 0.001d, 0.1d);
+        valueFactory.setConverter(new DoubleStringConverter());
+
+        FrequencySpinner.setValueFactory(valueFactory);
         FrequencySpinner.setEditable(true);
     }
 }

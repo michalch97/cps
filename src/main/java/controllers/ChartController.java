@@ -35,7 +35,7 @@ public class ChartController implements ServiceBindable<ChartService>  {
         if (chartService.getSelectedItem().getSignal().getSignalStorageType() == SignalStorageType.Discrete) {
             series.getNode().setStyle("-fx-stroke: transparent;");
         } else {
-            setPointsSize(dataPoints, 0.5d);
+            hidePoints(dataPoints);
         }
     }
 
@@ -43,10 +43,11 @@ public class ChartController implements ServiceBindable<ChartService>  {
         lineChart.setLegendVisible(false);
     }
 
-    private void setPointsSize(List<Data<Double, Double>> dataPoints, Double size) {
+    private void hidePoints(List<Data<Double, Double>> dataPoints) {
         dataPoints.forEach(data ->  {
             Region region = new Region();
-            region.setShape(new Circle(size));
+            region.setShape(new Circle(0.d));
+            region.setVisible(false);
             data.setNode(region);
         });
     }
