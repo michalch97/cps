@@ -2,6 +2,9 @@ package signals;
 
 import signalUtils.SignalStorageType;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class TriangularSignal extends Signal {
 
     private Double period;
@@ -18,6 +21,10 @@ public class TriangularSignal extends Signal {
     }
     @Override
     public Double calculateValue(Double xPoint) {
+        if(BigDecimal.valueOf(xPoint).setScale(BigDecimal.valueOf(0.00001d).scale(), RoundingMode.HALF_DOWN).doubleValue() ==
+                BigDecimal.valueOf(startTime).setScale(BigDecimal.valueOf(0.00001d).scale(), RoundingMode.HALF_DOWN).doubleValue()){
+            k = 0.d;
+        }
         if (xPoint > (k + 1.d) * period) {
             k = k + 1.d;
         }

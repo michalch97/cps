@@ -12,14 +12,15 @@ public class GaussianNoiseSignal extends Signal {
         super(amplitude, SignalStorageType.Continuous);
         rand = new Random();
     }
+
     @Override
     public Double calculateValue(Double xPoint) {
         rand.setSeed(pointToSeed(xPoint));
-        return expandRandomValueToAmplitude(rand.nextGaussian());
+        return expandRandomValueToAmplitude(rand.nextGaussian()/3.5d);
     }
 
     private Double expandRandomValueToAmplitude(Double value) {
-        return getMinAmplitude() + (getMaxAmplitude() - getMinAmplitude()) * value;
+        return getMaxAmplitude()* value;
     }
 
     private long pointToSeed(Double point) {
