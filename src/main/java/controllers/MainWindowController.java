@@ -21,6 +21,9 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     public Button DivisionOperationButton;
     public TableView<SignalView> SignalsTableView;
     public TableColumn<SignalView, String> SignalName;
+    public Button SOIButton;
+    public Button CorrelationButton;
+    public Button ConvolutionButton;
     public Button SaveSignalButton;
     public Button LoadSignalButton;
     public Button LoadSignalInTextButton;
@@ -112,6 +115,9 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     }
 
     private void initSelectionBindings() {
+        SOIButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        CorrelationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        ConvolutionButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         SaveSignalButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         RemoveSignalButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         SampleButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
@@ -152,6 +158,27 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
         SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             windowService.compareSignal(selectedItem);
+        }
+    }
+
+    public void onConvolutionClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.convolutionSignal(selectedItem);
+        }
+    }
+
+    public void onCorrelationClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.correlationSignal(selectedItem);
+        }
+    }
+
+    public void onSOIClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.SOISignal(selectedItem);
         }
     }
 }

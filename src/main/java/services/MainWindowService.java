@@ -107,6 +107,18 @@ public class MainWindowService extends Service {
         new SignalOperationService(this, signalView, type);
     }
 
+    public void convolutionSignal(SignalView selectedItem){
+         new ConvolutionService(this,selectedItem);
+    }
+
+    public void correlationSignal(SignalView selectedItem) {
+        new CorrelationService(this,selectedItem);
+    }
+
+    public void SOISignal(SignalView selectedItem) {
+        new SOIService(this,selectedItem);
+    }
+
     void configureWindow(Stage stage, Scene scene) {
         stage.setTitle("Komputerowe przetwarzanie sygnałów");
         stage.setWidth(800);

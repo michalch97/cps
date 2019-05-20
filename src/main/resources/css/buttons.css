@@ -72,3 +72,15 @@
 .compareButton {
   -fx-background-image: url("../icons/comparison.png");
 }
+
+.convolutionButton {
+  -fx-background-image: url("../icons/convolution.png");
+}
+
+.correlationButton {
+  -fx-background-image: url("../icons/correlation.png");
+}
+
+.SOIButton {
+  -fx-background-image: url("../icons/soi.png");
+}

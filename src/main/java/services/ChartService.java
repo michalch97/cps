@@ -45,7 +45,7 @@ public class ChartService extends Service {
     }
 
     private List<Point> filterValuesTooHighForChart(List<Point> points) {
-        double limitValue = 1e3;
+        double limitValue = 9e3;
         return points.stream()
                      .map(point -> {
                          if (point.getY() > limitValue) {
