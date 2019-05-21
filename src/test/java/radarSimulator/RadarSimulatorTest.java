@@ -3,6 +3,7 @@ package radarSimulator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import signalGenerators.Point;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -13,7 +14,7 @@ class RadarSimulatorTest {
         SimulatorSettingsDto settings = getSettings();
         RadarSimulator radarSimulator = new RadarSimulator(settings);
 
-        List<Double> simulationResults = radarSimulator.simulate();
+        List<Point> simulationResults = radarSimulator.simulate();
         assertNotNull(simulationResults);
     }
 
@@ -26,7 +27,7 @@ class RadarSimulatorTest {
                                    .signalPeriod(3.d)
                                    .signalSamplesPerSecond(300)
                                    .simulationTime(6.d)
-                                   .waveEnvironmentalSpeed(10_000.d)
+                                   .waveEnvironmentalSpeed(1_000.d)
                                    .build();
     }
 }

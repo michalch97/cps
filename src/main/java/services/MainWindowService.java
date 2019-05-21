@@ -128,4 +128,8 @@ public class MainWindowService extends Service {
 
         stage.show();
     }
+
+    public void openRadarSimulation() {
+        new RadarService(this);
+    }
 }

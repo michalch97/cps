@@ -21,6 +21,7 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     public Button DivisionOperationButton;
     public TableView<SignalView> SignalsTableView;
     public TableColumn<SignalView, String> SignalName;
+    public Button RadarButton;
     public Button SOIButton;
     public Button CorrelationButton;
     public Button ConvolutionButton;
@@ -180,5 +181,9 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
         if (selectedItem != null) {
             windowService.SOISignal(selectedItem);
         }
+    }
+
+    public void onRadarButtonClicked(ActionEvent event) {
+        windowService.openRadarSimulation();
     }
 }

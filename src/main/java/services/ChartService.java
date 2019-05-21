@@ -62,9 +62,13 @@ public class ChartService extends Service {
     }
 
     private List<Point> simplifyPoints(List<Point> points) {
-        Simplify<Point> simplify = new Simplify<>(new Point[0]);
-        Point[] simplifiedPoints = simplify.simplify(points.toArray(new Point[0]), 0.00001, true);
+        if (points.size() > 10_000) {
+            Simplify<Point> simplify = new Simplify<>(new Point[0]);
+            Point[] simplifiedPoints = simplify.simplify(points.toArray(new Point[0]), 0.00001, true);
 
-        return Arrays.asList(simplifiedPoints);
+            return Arrays.asList(simplifiedPoints);
+        } else {
+            return points;
+        }
     }
 }

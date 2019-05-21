@@ -84,3 +84,7 @@
 .SOIButton {
   -fx-background-image: url("../icons/soi.png");
 }
+
+.radarButton {
+  -fx-background-image: url("../icons/radar-dish.png");
+}

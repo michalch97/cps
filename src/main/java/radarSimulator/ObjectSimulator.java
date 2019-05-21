@@ -27,8 +27,9 @@ public class ObjectSimulator {
         return shiftSignal(sourceSignal);
     }
 
-    private void simulateStep(Double timeStep) {
+    public double simulateStep(Double timeStep) {
         currentObjectDistance = currentObjectDistance - (objectSpeed * timeStep);
+        return currentObjectDistance;
     }
 
     private List<Point> shiftSignal(List<Point> sourceSignalValues) {
