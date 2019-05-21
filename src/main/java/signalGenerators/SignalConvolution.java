@@ -2,34 +2,17 @@ package signalGenerators;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SignalConvolution {
     public List<Point> convolution(List<Point> firstPoints, List<Point> secondPoints, Double timeStep) {
         final int M = firstPoints.size();
         final int N = secondPoints.size();
-        List<Point> firstSignal = new ArrayList<>();
-        List<Point> secondSignal = new ArrayList<>();
+        List<Point> firstSignal = new ArrayList<>(firstPoints);
+        List<Point> secondSignal = new ArrayList<>(secondPoints);
 
-        if (M < N) {
-            for (int i = 0; i < M; i++) {
-                firstSignal.add(firstPoints.get(i));
-            }
-            for (int i = M; i < N; i++) {
-                firstSignal.add(new Point(secondPoints.get(i).getX(), 0.d));
-            }
-            secondSignal = secondPoints;
-        } else if (M > N) {
-            for (int i = 0; i < N; i++) {
-                secondSignal.add(secondPoints.get(i));
-            }
-            for (int i = N; i < M; i++) {
-                secondSignal.add(new Point(firstPoints.get(i).getX(), 0.d));
-            }
-            firstSignal = firstPoints;
-        } else {
-            firstSignal = firstPoints;
-            secondSignal = secondPoints;
-        }
+        firstSignal.addAll(createFillerPoints(secondPoints, firstSignal));
+        secondSignal.addAll(createFillerPoints(firstPoints, secondSignal));
 
         Double time = firstPoints.get(0).getX();
         List<Point> points = new ArrayList<>();
@@ -39,9 +22,17 @@ public class SignalConvolution {
             } else {
                 points.add(new Point(time, add(firstSignal, secondSignal, i - firstSignal.size() + 1, firstSignal.size() - 1)));
             }
+
             time += timeStep;
         }
         return points;
+    }
+
+    private List<Point> createFillerPoints(List<Point> longerSignal, List<Point> signalToBeFilled) {
+        return longerSignal.stream()
+                           .skip(signalToBeFilled.size())
+                           .map(point -> new Point(point.getX(), 0.d))
+                           .collect(Collectors.toList());
     }
 
     private double add(List<Point> firstPoints, List<Point> secondPoints, int start, int end) {
