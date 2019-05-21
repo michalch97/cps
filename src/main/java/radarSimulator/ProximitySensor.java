@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import signalGenerators.Point;
-import signalGenerators.SignalCorrelation;
 
 public class ProximitySensor {
 
@@ -41,28 +40,34 @@ public class ProximitySensor {
     }
 
     private List<Point> getCorrelation(List<Point> sourceSignal, List<Point> reflectedSignal) {
-        SignalCorrelation signalCorrelation = new SignalCorrelation();
-//        return signalCorrelation.correlation(sourceSignal, reflectedSignal, 1.d / settingsDto.getSignalSamplesPerSecond());
         return calculateCorrelation(sourceSignal, reflectedSignal);
     }
 
-    private List<Point> calculateCorrelation(List<Point> sourceSignal, List<Point> reflectedSignal) {
+    public List<Point> calculateCorrelation(List<Point> sourceSignal, List<Point> reflectedSignal) {
         List<Point> rotatedSignal = new ArrayList<>(sourceSignal);
-        Collections.reverse(rotatedSignal);
 
-        List<Double> sums = IntStream.range(0, sourceSignal.size()).mapToDouble(currentRotation -> {
-            double signalsMultiplicationSum = getSignalsMultiplicationSum(reflectedSignal, rotatedSignal);
+        List<Double> leftSums = IntStream.range(1, sourceSignal.size()).mapToDouble(currentRotation -> {
             Collections.rotate(rotatedSignal, 1);
+            return getSignalsPartialMultiplicationSum(reflectedSignal, rotatedSignal, 0,  currentRotation);
+        }).boxed().collect(Collectors.toList());
+
+        List<Point> rotatedSignal2 = new ArrayList<>(sourceSignal);
+        List<Double> rightSums = IntStream.range(0, sourceSignal.size()).mapToDouble(currentRotation -> {
+            double signalsMultiplicationSum = getSignalsPartialMultiplicationSum(reflectedSignal, rotatedSignal2, currentRotation, rotatedSignal2.size());
+            Collections.rotate(rotatedSignal2, 1);
             return signalsMultiplicationSum;
         }).boxed().collect(Collectors.toList());
+
+        ArrayList<Double> sums = new ArrayList<>(leftSums);
+        sums.addAll(rightSums);
 
         return IntStream.range(0, sums.size())
                         .mapToObj(index -> new Point((double) index, sums.get(index)))
                         .collect(Collectors.toList());
     }
 
-    private double getSignalsMultiplicationSum(List<Point> reflectedSignal, List<Point> rotatedSignal) {
-        return IntStream.range(0, rotatedSignal.size())
+    private double getSignalsPartialMultiplicationSum(List<Point> reflectedSignal, List<Point> rotatedSignal, int start, int end) {
+        return IntStream.range(start, end)
                         .mapToDouble(index -> rotatedSignal.get(index).getY() * reflectedSignal.get(index).getY())
                         .sum();
     }
