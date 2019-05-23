@@ -10,8 +10,8 @@ import static java.lang.Math.*;
 public class SignalSOI {
     public List<Point> filter(List<Point> points, Double MValue, Double KValue, Double timeStep, WindowType windowType) {
 
-        List<Double> lowPassFilterCoefficients = generateLowPassFilterCoefficients(points, MValue, KValue);
-        List<Double> coefficients = new ArrayList<>();
+        List<Double> lowPassFilterCoefficients = generateLowPassFilterCoefficients(MValue, KValue);
+        List<Double> coefficients;
         if (windowType == WindowType.HANNING) {
             coefficients = generateHanningWindowsCoefficients(lowPassFilterCoefficients, MValue);
         } else {
@@ -19,7 +19,7 @@ public class SignalSOI {
         }
 
         List<Point> impulseResponse = new ArrayList<>();
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < MValue.intValue(); i++) {
             impulseResponse.add(new Point(points.get(i).getX(), coefficients.get(i)));
         }
 
@@ -29,13 +29,13 @@ public class SignalSOI {
         return signalAfterFiltration;
     }
 
-    private List<Double> generateLowPassFilterCoefficients(List<Point> points, Double M, Double K) {
+    private List<Double> generateLowPassFilterCoefficients(Double M, Double K) {
         List<Double> coefficients = new ArrayList<>();
-        for (int n = 0; n < points.size(); n++) {
+        for (int n = 0; n < M.intValue(); n++) {
             if (n == (M.intValue() - 1) / 2) {
                 coefficients.add(2.d / K);
             } else {
-                coefficients.add(sin(2.d * PI * (n - (M - 1.d) / 2.d) / K) / PI * (n - (M - 1.d) / 2.d));
+                coefficients.add(sin(2.d * PI * (n - (M - 1.d) / 2.d) / K) / (PI * (n - (M - 1.d) / 2.d)));
             }
         }
         return coefficients;

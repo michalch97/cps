@@ -48,7 +48,7 @@ public class SignalOperationService extends Service {
         SignalParameters firstSignalParameters = signalView.getSignalParameters();
         SignalParameters secondSignalParameters = selectedSignal.getSignalParameters();
 
-        Double timeStep = 0.01d;
+        Double timeStep = 0.0001d;
         if (firstSignal instanceof DiscreteSignal && secondSignal instanceof DiscreteSignal) {
             timeStep = ((DiscreteSignal) firstSignal).getTimeStep();
         }
