@@ -1,1 +1,1 @@
-# cps
+# Cyfrowe Przetwarzanie Sygnału
