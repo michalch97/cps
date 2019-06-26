@@ -88,3 +88,31 @@
 .radarButton {
   -fx-background-image: url("../icons/radar-dish.png");
 }
+
+.dftButton {
+  -fx-background-image: url("../icons/dft.png");
+}
+
+.fftButton {
+  -fx-background-image: url("../icons/fft.png");
+}
+
+.idftButton {
+  -fx-background-image: url("../icons/idft.png");
+}
+
+.dctButton {
+  -fx-background-image: url("../icons/dct.png");
+}
+
+.idctButton {
+  -fx-background-image: url("../icons/idct.png");
+}
+
+.fctButton {
+  -fx-background-image: url("../icons/fct.png");
+}
+
+.ifctButton {
+  -fx-background-image: url("../icons/ifct.png");
+}

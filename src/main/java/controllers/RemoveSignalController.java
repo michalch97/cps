@@ -24,5 +24,6 @@ public class RemoveSignalController extends Controller implements ServiceBindabl
     @Override
     public void setService(RemoveSignalService service) {
         removeSignalService = service;
+        SignalName.setText(service.getSignalToRemove().getName());
     }
 }

@@ -6,11 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import signalUtils.SignalFactory;
 import signalUtils.SignalOperationType;
-import signalUtils.SignalParameters;
-import signalUtils.SignalType;
-import signals.Signal;
 import viewItems.SignalView;
 
 @Getter
@@ -26,26 +22,9 @@ public class MainWindowService extends Service {
         signals = FXCollections.observableArrayList();
         stage = primaryStage;
         createScene(primaryStage, fxmlMainWindowFileName);
-
-        createMockSignal(); // TODO remove when done testing
     }
 
-    public void createMockSignal() {
-        SignalParameters signalParameters = SignalParameters.builder()
-                                                            .amplitude(10.d)
-                                                            .period(1/100.d)
-                                                            .duration(0.1d)
-                                                            .startTime(0.d)
-                                                            .fillFactor(0.d)
-                                                            .build();
-
-        Signal signal = SignalFactory.createSignal(signalParameters, SignalType.SIN);
-        SignalView signalView = new SignalView("Sin 1", signal, signalParameters, SignalType.SIN);
-        addSignal(signalView);
-        signal = SignalFactory.createSignal(signalParameters.toBuilder().period(1/1100.d).build(), SignalType.SIN);
-        signalView = new SignalView("Sin 2", signal, signalParameters, SignalType.SIN);
-        addSignal(signalView);
-    }
+    public void showTime(long time) {new ShowTimeService(this,time);}
 
     public void addSignal(SignalView signalView) {
         signals.add(signalView);
@@ -119,17 +98,45 @@ public class MainWindowService extends Service {
         new SOIService(this,selectedItem);
     }
 
+    public void DFTSignal(SignalView selectedItem){
+        new DFTService(this, selectedItem);
+    }
+
+    public void IDFTSignal(SignalView selectedItem){
+        new IDFTService(this, selectedItem);
+    }
+
     void configureWindow(Stage stage, Scene scene) {
-        stage.setTitle("Komputerowe przetwarzanie sygnałów");
-        stage.setWidth(800);
+        stage.setTitle("Cyfrowe Przetwarzanie Sygnału");
+        stage.setWidth(900);
         stage.setHeight(475);
-        stage.setMinWidth(700);
-        stage.setMinHeight(450);
+        stage.setMinWidth(900);
+        stage.setMinHeight(475);
 
         stage.show();
     }
 
     public void openRadarSimulation() {
         new RadarService(this);
+    }
+
+    public void DCTSignal(SignalView selectedItem) {
+        new DCTService(this,selectedItem);
+    }
+
+    public void IDCTSignal(SignalView selectedItem) {
+        new IDCTService(this,selectedItem);
+    }
+
+    public void FCTSignal(SignalView selectedItem) {
+        new FCTService(this,selectedItem);
+    }
+
+    public void IFCTSignal(SignalView selectedItem) {
+        new IFCTService(this,selectedItem);
+    }
+
+    public void FFTSignal(SignalView selectedItem) {
+        new FFTService(this,selectedItem);
     }
 }

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" styleClass="window" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" styleClass="window" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <stylesheets>
       <URL value="@../css/buttons.css" />
       <URL value="@../css/window.css" />
@@ -92,10 +98,45 @@
       </TableView>
    </center>
    <top>
-      <HBox alignment="CENTER" prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="34.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" HBox.hgrow="ALWAYS">
                <children>
+                  <Button fx:id="IFCTButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onIFCTButtonClicked" styleClass="iconButton, ifctButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="FCTButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onFCTButtonClicked" styleClass="iconButton, fctButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="IDCTButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onIDCTButtonClicked" styleClass="iconButton, idctButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="DCTButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onDCTButtonClicked" styleClass="iconButton, dctButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="IDFTButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onIDFTButtonClicked" styleClass="iconButton, idftButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="FFTButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onFFTButtonClicked" styleClass="iconButton, fftButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="DFTButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onDFTButtonClicked" styleClass="iconButton, dftButton">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="RadarButton" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onRadarButtonClicked" styleClass="iconButton, radarButton">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />

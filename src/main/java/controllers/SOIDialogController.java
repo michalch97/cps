@@ -24,7 +24,6 @@ public class SOIDialogController extends Controller implements ServiceBindable<S
 
         soiService.createSignalByFiltration(signalName, MValue, KValue, WindowTypeComboBox.getValue());
         closeWindow(CreateButton);
-
     }
 
     public void onCancelButtonClicked(ActionEvent event) {

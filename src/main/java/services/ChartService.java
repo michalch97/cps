@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
+import signalGenerators.ComplexPoint;
 import signalGenerators.Point;
 import signalGenerators.SignalGenerator;
+import signalGenerators.SignalGeneratorFourier;
 import signalUtils.SignalParameters;
+import signals.FixedSignal;
 import simplify.Simplify;
 import viewItems.SignalView;
 
@@ -19,7 +22,9 @@ public class ChartService extends Service {
     private static final String fxmlChartWindowFileName = "fxml/chartWindow.fxml";
     private SignalView selectedItem;
     private List<Point> points;
+    private List<ComplexPoint> pointsFourier;
     private boolean isLogarithmic;
+    private boolean isFourier;
 
     public ChartService(SignalView selectedItem) {
         this.selectedItem = selectedItem;
@@ -36,29 +41,40 @@ public class ChartService extends Service {
     }
 
     private void calculatePoints() {
-        SignalParameters signalParameters = selectedItem.getSignalParameters();
-        SignalGenerator signalGenerator = new SignalGenerator(selectedItem.getSignal(), signalParameters.getStartTime(), signalParameters.getDuration(), 0.00001d);
+        if(selectedItem.getSignal() instanceof FixedSignal){
+            this.isFourier = ((FixedSignal) selectedItem.getSignal()).isFourier();
+        } else {
+            this.isFourier = false;
+        }
 
-        points = signalGenerator.generateSignal();
-        points = filterValuesTooHighForChart(points);
-        points = simplifyPoints(points);
+        if (isFourier) {
+            SignalGeneratorFourier signalGenerator = new SignalGeneratorFourier(selectedItem.getSignal());
+            pointsFourier = signalGenerator.generateSignal();
+        } else {
+            SignalParameters signalParameters = selectedItem.getSignalParameters();
+            SignalGenerator signalGenerator = new SignalGenerator(selectedItem.getSignal(), signalParameters.getStartTime(), signalParameters.getDuration(), 0.00001d);
+
+            points = signalGenerator.generateSignal();
+            points = filterValuesTooHighForChart(points);
+            points = simplifyPoints(points);
+        }
     }
 
     private List<Point> filterValuesTooHighForChart(List<Point> points) {
         double limitValue = 9e3;
         return points.stream()
-                     .map(point -> {
-                         if (point.getY() > limitValue) {
-                             isLogarithmic = true;
-                            return new Point(point.getX(), limitValue);
-                         } else if (point.getY() < -limitValue) {
-                             isLogarithmic = true;
-                             return new Point(point.getX(), -limitValue);
-                         } else {
-                             return point;
-                         }
-                     })
-                     .collect(Collectors.toList());
+                .map(point -> {
+                    if (point.getY() > limitValue) {
+                        isLogarithmic = true;
+                        return new Point(point.getX(), limitValue);
+                    } else if (point.getY() < -limitValue) {
+                        isLogarithmic = true;
+                        return new Point(point.getX(), -limitValue);
+                    } else {
+                        return point;
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
     private List<Point> simplifyPoints(List<Point> points) {

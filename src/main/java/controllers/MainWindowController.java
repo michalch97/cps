@@ -23,6 +23,13 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
     public TableColumn<SignalView, String> SignalName;
     public Button RadarButton;
     public Button SOIButton;
+    public Button DFTButton;
+    public Button FFTButton;
+    public Button IDFTButton;
+    public Button DCTButton;
+    public Button IDCTButton;
+    public Button FCTButton;
+    public Button IFCTButton;
     public Button CorrelationButton;
     public Button ConvolutionButton;
     public Button SaveSignalButton;
@@ -117,6 +124,13 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
 
     private void initSelectionBindings() {
         SOIButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        DFTButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        FFTButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        IDFTButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        DCTButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        IDCTButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        FCTButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
+        IFCTButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         CorrelationButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         ConvolutionButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
         SaveSignalButton.disableProperty().bind(Bindings.isEmpty(SignalsTableView.getSelectionModel().getSelectedItems()));
@@ -185,5 +199,54 @@ public class MainWindowController implements ServiceBindable<MainWindowService> 
 
     public void onRadarButtonClicked(ActionEvent event) {
         windowService.openRadarSimulation();
+    }
+
+    public void onDFTButtonClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.DFTSignal(selectedItem);
+        }
+    }
+
+    public void onIDFTButtonClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.IDFTSignal(selectedItem);
+        }
+    }
+
+    public void onDCTButtonClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.DCTSignal(selectedItem);
+        }
+    }
+
+    public void onIDCTButtonClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.IDCTSignal(selectedItem);
+        }
+    }
+
+    public void onFCTButtonClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.FCTSignal(selectedItem);
+        }
+    }
+
+    public void onIFCTButtonClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.IFCTSignal(selectedItem);
+        }
+    }
+
+    public void onFFTButtonClicked(ActionEvent actionEvent) {
+        SignalView selectedItem = SignalsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            windowService.FFTSignal(selectedItem);
+        }
     }
 }
